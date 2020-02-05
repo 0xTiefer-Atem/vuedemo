@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 组件中的数据存放问题-->
+<!-- 组件对象也有一个data属性(也可以有methods等属性)
+     只是这个data属性必须是一个函数，而且这个函数返回一个对象，对象内部保存着数据
+     这是因为组件之间的数据不能共用，就需要data函数每次都返回新的对象里面包含组件各自的数据-->
+
+<body>
+<div id="app">
+  <cpn></cpn>
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>{{title}}</h2>
+    <p>我是内容2,呵呵呵呵</p>
+  </div>
+</template>
+
+
+<script src="../../js/vue.js"></script>
+<script>
+
+  Vue.component('cpn', {
+    template: '#cpn1',
+    data(){
+      return {
+        title: '我是标题'
+      }
+    }
+  });
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+
+    }
+  });
+</script>
+</body>
+</html>

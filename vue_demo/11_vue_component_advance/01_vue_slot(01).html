@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- vue插槽的基本使用-->
+<!-- 组件的插槽是为了让我们封装的组件更加具有扩展性  -->
+<!--
+1. 插槽的基本使用: <slot></slot>
+2. 插槽的默认值: <slot><button>按钮</button></slot>
+3. 如果有多个元素放入组件进行替换，会一起作为替换元素
+-->
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <childcpn></childcpn>
+  <childcpn><span>哈哈哈</span></childcpn>
+  <childcpn>
+    <a href="#">呵呵呵呵</a>
+    <span>我是span元素</span>
+    <p>我是p元素</p>
+  </childcpn>
+  <childcpn></childcpn>
+</div>
+
+<template id="child">
+  <div>
+    <h2>我是组件</h2>
+
+<!--    插槽里的默认值-->
+    <slot><button>按钮</button></slot>
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+
+  const childcpn = {
+    template: '#child',
+    props: {
+
+    },
+    data() {
+      return {}
+    }
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+      childcpn
+    }
+  });
+</script>
+</body>
+</html>

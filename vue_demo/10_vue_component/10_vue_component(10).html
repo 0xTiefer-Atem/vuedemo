@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 子组件数据传递给父组件: 自定义事件-->
+<body>
+
+<!-- 父组件模板-->
+<div id="app">
+  <h2>{{message}}</h2>
+  <cpn></cpn>
+  <input type="text" @btnclick="fpnlisten">
+</div>
+
+
+<!--子组件模板-->
+<template id = "cpn">
+  <div>
+    <input type="button" v-for="category in categories" @click="btnClick(category)" :id="category.id" :value="category.name">
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+  //子组件
+  const cpn = {
+    template: '#cpn',
+    data() {
+      return {
+        categories: [
+          {id: 'aaa', name: '热门推荐'},
+          {id: 'bbb', name: '手机数码'},
+          {id: 'ccc', name: '家用家电'},
+          {id: 'ddd', name: '电脑办公'},
+        ]
+      }
+    },
+    methods: {
+      btnClick(category){
+        // console.log(category);
+        console.log("子组件发出事件");
+        //子组件发送事件,自定义事件
+        this.$emit('btnclick', category);
+      }
+    }
+  };
+
+
+  //父组件
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+      //父组件监听事件
+      fpnlisten(item) {
+        console.log("父组件监听到事件", item);
+      }
+    },
+    computed: {
+
+    },
+    components: {
+      cpn
+    }
+  });
+</script>
+</body>
+</html>

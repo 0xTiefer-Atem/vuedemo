@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+</head>
+<!-- 图书购物车小案例-->
+<body>
+<div id="bookcart">
+  <div v-if="books_list.length != 0">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(book , index) in books_list" v-if="">
+        <th>{{book.id}}</th>
+        <th>{{book.name}}</th>
+        <th>{{book.date}}</th>
+        <!--  过滤器: 过滤某个元素-->
+        <th>{{book.price | showPrice}}</th>
+        <th>
+          <input type="button" value="-" @click="sub(index)" :disabled="book.count <= 1">
+          {{book.count}}
+          <input type="button" value="+" @click="add(index)">
+        </th>
+        <th><input type="button" value="移除" @click="removeHandle(index)"></th>
+      </tr>
+      </tbody>
+    </table>
+    <div><h2>总价格: ￥{{totalPrice}}.00</h2></div>
+  </div>
+  <h2 v-else>购物车为空</h2>
+</div>
+
+
+<script src="../../js/vue.js"></script>
+<script src="main.js"></script>
+<link rel="stylesheet" href="style.css">
+</body>
+</html>

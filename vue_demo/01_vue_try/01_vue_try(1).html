@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{message}}</h1>
+    <ul>
+<!--    vue for循环: v-for="变量 in 列表"    -->
+        <li v-for="item in foods">{{item}}</li>
+    </ul>
+    <h2>{{firstName}} {{lastName}}</h2>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好',
+            foods: ['宫保鸡丁','水煮牛肉','烤鸭','红烧排骨'],//数组写法
+            firstName: '123',
+            lastName: '456'
+        }
+    })
+</script>
+</body>
+</html>

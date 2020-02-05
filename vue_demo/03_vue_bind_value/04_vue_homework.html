@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- v_bind与v-for结合的小例子-->
+<!-- 需求: 点击列表中的哪一项，该项就变成红色，其他项是黑色-->
+<!-- 提示: 利用下标-->
+<div id="app">
+  <ul>
+<!--  vue for循环 v-for="(item, index) in movies" 带有下标值  -->
+    <li v-for="(item, index) in movies">{{index}}-{{item}}</li>
+  </ul>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      movies: ['精武门', '海尔兄弟', '大闹天宫', '进击的巨人']
+    },
+    methods: {
+
+    }
+  });
+</script>
+
+</body>
+</html>

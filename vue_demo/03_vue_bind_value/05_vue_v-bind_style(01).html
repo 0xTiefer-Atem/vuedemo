@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- 动态绑定style, 对象语法-->
+<div id="app">
+
+  <!--  绑定格式: <h2 :style="{key(css属性名,-或者驼峰表示都可以): value(属性值), ...}">{{message}}</h2>-->
+  <!-- 绑定里的对象键值对中 key可以不用加单引号，直接是字符串处理，value需要加，不然会被当成变量处理-->
+  <!--  不在50px两边加单引号,vue会认为是变量，回去data里面寻找，找不到就报错-->
+  <h2 :style="{fontSize: '50px'}">{{message}}</h2>
+
+ <!--  size当成变量使用-->
+  <h2 :style="{fontSize: size}">{{message}}</h2>
+
+ <!-- 还可以写成表达式-->
+  <h2 :style="{fontSize: finalSize + 'px', color: finalColor}">{{message}}</h2>
+
+ <!--  还可以用函数返回-->
+  <h2 :style="getStyles()">{{message}}</h2>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      size: '100px',
+      finalSize: 150,
+      finalColor: 'red'
+    },
+    methods: {
+      getStyles: function () {
+        return {fontSize: this.finalSize + 'px', color: this.finalColor}
+      }
+    }
+  });
+</script>
+</body>
+</html>

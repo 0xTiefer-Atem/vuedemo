@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 作用域插槽的使用-->
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+<!--  目的是获取子组件中的clanguages-->
+  <childcpn>
+<!--    2. 通过 slot-scope属性来获取子组件的slot对象，再获取里面的值-->
+    <template slot-scope="slot">
+<!--      <span v-for="data in slot.datas">{{data}} - </span>-->
+      <span>{{slot.datas.join(' - ')}}</span>
+    </template>
+  </childcpn>
+</div>
+
+<template id="child">
+  <div>
+    <h2>我是组件</h2>
+
+<!--    1. 给子组件slot标签绑定想要传给父组件的数据-->
+    <slot :datas="clanguages">
+      <ul v-for="language in clanguages">
+        <li>{{language}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+
+  const childcpn = {
+    template: '#child',
+    props: {
+
+    },
+    data() {
+      return {
+        clanguages: ['Java', 'C', 'C++', 'Python', 'Javascript', 'Go']
+      }
+    }
+  };
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+      childcpn
+    }
+  });
+</script>
+</body>
+</html>

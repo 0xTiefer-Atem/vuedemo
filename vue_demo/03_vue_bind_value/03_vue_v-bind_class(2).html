@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--  数组语法-->
+<div id="app">
+
+<!--  中括号里面按类名处理-->
+  <h2 class="title" :class="['active', 'line']">{{message}}</h2>
+
+<!--  中括号里面的按变量处理,vue在解析时将data中的active，line替换过去，注意与上面的区别-->
+  <h2 class="title" :class="[active, line]">{{message}}</h2>
+
+<!--  利用函数返回classes数组-->
+  <h2 class="title" :class="getClasses()">{{message}}</h2>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      active: 'aaaaa',
+      line: 'bbbb'
+    },
+    methods: {
+      getClasses: function () {
+        return [this.active, this.line]
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

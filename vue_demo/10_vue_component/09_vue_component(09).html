@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!--父传子 props中的驼峰标识-->
+<body>
+<div id="app">
+<!--  目前vue标签属性不支持驼峰标识-->
+  <mycpn :cinfo="info"></mycpn>
+</div>
+
+<template id="cpn">
+<!--  若子组件有多个标签，必须用div标签包裹起来-->
+  <div>
+    {{cinfo.name}}{{' '+cinfo.age}}{{ cinfo.height}}
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+
+  const mycpn = {
+    template: '#cpn',
+    props: {
+      cinfo: {
+        type: Object,
+        default() {
+          return {
+            name: "wq",
+            age: 19,
+            height: 1.98
+          }
+        }
+      }
+    },
+    data() {
+      return {}
+    }
+  };
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      info: {
+        name: "123",
+        age: 18,
+        height: 1.88
+      },
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+      mycpn
+    }
+  });
+</script>
+</body>
+</html>

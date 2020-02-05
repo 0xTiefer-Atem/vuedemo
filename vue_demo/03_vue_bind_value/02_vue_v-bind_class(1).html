@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<!--  v-bind 对象语法-->
+<div id="app">
+  <h2 class="active">{{message}}</h2>
+  <h2 :class="attribute">{{message}}</h2>
+
+<!--  v-bind的高级用法-->
+<!--  例子<h2 v-bin:class = "{类名1: 布尔值 , 类名2: 布尔值}">{{message}}</h2>-->
+<!--  多出的class会合并到一起-->
+  <h2 class="title" v-bind:class = "{active: isActive , line: isLine}" >{{message}}</h2>
+  <button @click = 'change'>点击我</button>
+<!--  利用函数定义class属性-->
+  <h2 class="title" :class = "getClasses()" >{{message}}</h2>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      attribute: 'active',
+      isActive: true,
+      isLine: true,
+    },
+    methods: {
+      change: function () {
+        this.isActive = !this.isActive
+      },
+      getClasses: function () {
+        return {active: this.isActive , line: this.isLine}
+      }
+    }
+  });
+</script>
+</body>
+</html>

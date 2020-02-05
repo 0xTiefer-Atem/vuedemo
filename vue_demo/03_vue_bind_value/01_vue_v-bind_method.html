@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+<!--  v-bind 动态绑定标签属性-->
+  <img v-bind:src="imgUrl">
+  <a v-bind:href="url">百度一下</a>
+
+<!--  语法糖写法-->
+  <img :src="imgUrl">
+  <a :href="url">百度一下</a>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      imgUrl: 'https://dss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=3' +
+          '336697024,1393888496&fm=74&app=80&f=JPEG&size=f121,90' +
+          '?sec=1880279984&t=a896593144be1b6ad988cdca081db173',
+      url:'http://www.baidu.com'
+    }
+  });
+</script>
+</body>
+</html>

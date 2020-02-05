@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 具名插槽的使用-->
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <childcpn>
+<!--    放入元素时 标清插槽的名字-->
+    <button slot="left">返回</button>
+    <span slot="center">我是标题</span>
+    <button slot="right">更多</button>
+  </childcpn>
+</div>
+
+<template id="child">
+  <div>
+    <h2>我是组件</h2>
+
+<!--    给插槽起名字，尽量不要重复-->
+    <slot name="left"><span>左边</span></slot>
+    <slot name="center"><span>中间</span></slot>
+    <slot name="right"><span>右边</span></slot>
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+
+  const childcpn = {
+    template: '#child',
+    props: {
+
+    },
+    data() {
+      return {}
+    }
+  };
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+      childcpn
+    }
+  });
+</script>
+</body>
+</html>

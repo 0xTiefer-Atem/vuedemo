@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<!-- 自定义事件小案例-->
+<!-- 子组件的按钮调用父组件的元素-->
+
+<body>
+<div id="app">
+  <cpn @addcounter="add" @subcounter="sub"></cpn>
+  <h2>{{message}}</h2>
+  <h3>{{counter}}</h3>
+</div>
+
+
+<template id="ccounter">
+  <div>
+  <input type="button" value="+1" @click="add">
+  <input type="button" value="-1" @click="sub">
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: '#ccounter',
+    methods: {
+      add() {
+        console.log('子组件调用加事件');
+        this.$emit('addcounter')
+      },
+      sub() {
+        console.log('子组件调用减事件');
+        this.$emit('subcounter')
+      }
+    }
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '简单计数器',
+      counter: 0
+    },
+    methods: {
+      add() {
+        this.counter++;
+      },
+      sub() {
+        this.counter--;
+      }
+
+    },
+    computed: {
+
+    },
+    components: {
+      cpn
+    }
+  });
+</script>
+</body>
+</html>

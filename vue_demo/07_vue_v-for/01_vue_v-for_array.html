@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- v-for遍历数组-->
+<body>
+<div id="app">
+<!--  1. 在遍历的过程中，没有使用下标值-->
+  <ul>
+    <li v-for="name in names">{{name}}</li>
+  </ul>
+
+<!--  2. 在遍历过程中，获取下标值-->
+  <ul>
+    <li v-for="(name , index) in names">{{index+1}}.{{name}}</li>
+  </ul>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      names: ['wq' , 'myp' , 'zp' , 'zsq' , 'wwj']
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

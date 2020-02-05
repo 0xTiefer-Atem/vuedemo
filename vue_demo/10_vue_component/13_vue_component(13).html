@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 父直接使用子组件对象:  $children与$refs的使用-->
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <child ref="child1"></child>
+  <child></child>
+  <child></child>
+  <input type="button" value="按钮" @click="btnClick">
+</div>
+
+
+<template id="childcpn">
+  <div>
+    我是子组件
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+
+  const child = {
+    template: '#childcpn',
+    data() {
+      return{
+        name: "我是子组件"
+      }
+    },
+    methods: {
+      showMessage(value) {
+        console.log("message: 我是第"+value+"个子组件的方法");
+      }
+    }
+
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+      btnClick() {
+        // 1. $children的使用，返回是一个子组件数组，不推荐用下表取出子组件
+        // console.log(this.$children);
+        // for (let i = 0; i < this.$children.length; i++) {
+        //   let c = this.$children[i]
+        //   console.log(c.name);
+        //   c.showMessage(i);
+        // }
+
+
+        //2. $refs => 对象类型  默认为空  必须再子组件的标签李加上 ref="xxx" 这属性才能用
+        // 同该方法直接拿取固定id的组件  用的多
+        console.log(this.$refs.child1);
+      }
+    },
+    computed: {
+
+    },
+    components: {
+      child
+    }
+  });
+</script>
+</body>
+</html>

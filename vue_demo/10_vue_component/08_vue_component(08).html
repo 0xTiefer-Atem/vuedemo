@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 父子组件之间的通信   父->子  使用: props关键字想子组件发送数据
+                       子->父 使用: 自定义事件(emit)向父组件发送消息-->
+ <!--                     父组件向子组件传递数据-->
+<body>
+<div id="app">
+  <myCpn v-bind:cmessage="message" :cmovies="movies"></myCpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <p>{{cmessage}}</p>
+    <ul v-for="movie in cmovies">
+      <li>{{movie}}</li>
+    </ul>
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+
+  //父传子: props
+  const mycpn = {
+    template: '#cpn',
+    //第一种写法 数组形式
+    // props: ['cmovies', 'cmessage'],
+
+    //第二种写法   对象形式
+    props: {
+      //1.类型限制
+      // cmovies: Array,
+      // cmessage: String,
+
+      //2.提供一些默认值，以及必传值
+      cmessage: {
+        type: String,
+
+        //默认值
+        default: '暂无消息',
+
+        //再用该变量是的时候必须给这个属性传值
+        required: true
+      },
+
+      //类型是对象或者数组时，默认值必须是一个函数
+      cmovies: {
+        type: Array,
+        default() {
+          return ['没有数据']
+        }
+      }
+    },
+    data() {
+      return {}
+    }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      movies: ['海王' , '海贼王' , '加勒比海盗' , '海尔兄弟']
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+      //对象增强写法里的属性增强写法
+      mycpn
+    }
+  });
+</script>
+</body>
+</html>

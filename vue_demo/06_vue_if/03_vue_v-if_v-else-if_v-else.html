@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- v-if与v-else-if与v-else的结合使用-->
+<body>
+<div id="app">
+  <h2 v-if="count == 0">{{message1}}</h2>
+  <h2 v-else-if = 'count == 1'>{{message2}}</h2>
+  <h2 v-else>{{message3}}</h2>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message1: '你好',
+      message2: '我好',
+      message3: '大家好',
+      count: 0
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- v-model的原理-->
+<body>
+<div id="app">
+<!--  <input type="text" v-model="message">-->
+
+<!-- 原理描述: 1. 先通过v-bind绑定元素的value属性
+              2. 在通过监听input事件获取text中当前event.target.value赋值给message-->
+<!--  实现方式1-->
+<!--  <input type="text" :value="message" @input="changeWord">-->
+
+<!--  实现方式2-->
+  <input type="text" :value="message" @input="message = $event.target.value">
+
+  <h2>{{message}}</h2>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+      changeWord(event) {
+        // console.log(event);
+        this.message = event.target.value
+      }
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

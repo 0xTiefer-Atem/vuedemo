@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 组件中的data为什么必须是一个函数-->
+<!--每个组件所要的数据默认是不共享的，所以data用函数每次都返回一个新的对象，相当于组件自己的新
+数据内存空间-->
+<!-- 将计数器封装成一个组件-->
+<body>
+<div id="app">
+  //组件实例
+  <counter></counter>
+  <counter></counter>
+  <counter></counter>
+</div>
+
+
+<template id="counter">
+  <div>
+    <h2>当前计数 {{count}}</h2>
+    <input type="button" value="-" @click="sub">
+    <input type="button" value="+" @click="add">
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+
+  //注册组件
+  Vue.component('counter', {
+    template: '#counter',
+    data(){
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      add() {
+        this.count++
+      },
+      sub() {
+        this.count--
+      }
+    }
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+
+    }
+  });
+</script>
+</body>
+</html>

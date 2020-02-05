@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--  mustache语法只能修改标签的内容，不能修改标签的属性值-->
+  <h2>{{message}}</h2>
+  <h2>{{message}},李银河</h2>
+<!--  在mustache语法中，不仅可以写变量，还可以一些表达式-->
+  <h2>{{firstName + " " + lastName}}</h2>
+  <h2>{{firstName}} {{lastName}}</h2>
+  <h2>{{counter *2}}</h2>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      firstName: 'kobe',
+      lastName: 'bryant',
+      counter: 100
+    }
+  });
+</script>
+</body>
+</html>

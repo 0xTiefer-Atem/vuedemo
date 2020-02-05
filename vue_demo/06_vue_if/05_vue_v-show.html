@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!-- v-show 使用-->
+<!-- 当标签元素显示和隐藏频繁时，使用v-show，只是少数次显示隐藏，用v-if-->
+<div id="app">
+<!--  v-if： 当条件为false时，包含v-if的标签元素会被移除DOM-->
+<!--  当条件为true时，Vue会重新创建该标签-->
+  <h2 v-if="isShow">{{message}}</h2>
+
+<!--  v-show: 当条件为false时，v-show只是给我们的标签元素添加了一个行内样式: display: none-->
+  <h2 v-show="isShow">{{message}}</h2>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      isShow: true
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

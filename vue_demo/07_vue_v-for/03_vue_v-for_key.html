@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- v-for使用过程中添加key-->
+<!-- 官方推荐在v-for给对应元素加上一个:key属性，主要作用是为了高效的更新虚拟DOM-->
+<body>
+<div id="app">
+  <ul>
+    <li v-for="letter in letters" :key="letter">{{letter}}</li>
+  </ul>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      letters: ['a' , 's' , 'd' , 'e' , 't']
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

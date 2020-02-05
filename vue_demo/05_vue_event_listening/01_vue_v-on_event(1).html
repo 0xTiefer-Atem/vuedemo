@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- v-on的基本使用-->
+<body>
+<div id="app">
+  <h2>{{counter}}</h2>
+
+<!--  写法一-->
+<!--  <button v-on:click = "counter++">+</button>-->
+<!--  <button v-on:click = "counter&#45;&#45;">-</button>-->
+
+<!--  写法二-->
+<!--  <button v-on:click = "add">+</button>-->
+<!--  <button v-on:click = "sub">-</button>-->
+
+<!--  写法三,语法糖-->
+  <button @click = "add">+</button>
+  <button @click = "sub">-</button>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      counter: 0,
+    },
+    methods: {
+      //ES6函数增强写法
+      add() {
+        this.counter ++
+      },
+      sub() {
+        this.counter--
+      }
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

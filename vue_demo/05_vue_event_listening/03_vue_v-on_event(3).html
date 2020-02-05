@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- v-on修饰符-->
+
+
+<body>
+<div id="app">
+<!--  1. v-on .stop修饰符的使用: 防止事件冒泡-->
+  <div @click="divClick">
+  <button @click.stop="btnClick">按钮</button>
+  </div>
+
+
+<!-- 2. v-on .prevent  阻止默认程序，比如form表单中的summit提交按钮，会自己提交-->
+  <br>
+  <form action="baidu">
+    <input type="submit" value="提交" @click.prevent = "submitClick">
+  </form>
+  <br>
+
+<!--  3. 监听某个键盘上的键帽的点击-->
+  <input type="text" @keyup.enter="keyUp">
+
+<!--  4. .once修饰符的使用  事件只触发一次-->
+  <input type="button" value="按钮2" @click.once="btn2Click">
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+      divClick() {
+        console.log('divClick');
+      },
+      btnClick() {
+        console.log('btnClick');
+      },
+      submitClick() {
+        console.log('submitClick');
+      },
+      keyUp() {
+        console.log('keyUp');
+      },
+      btn2Click() {
+        console.log('btn2Click');
+      }
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

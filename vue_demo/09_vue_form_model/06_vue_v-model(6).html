@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- vue中的值绑定,将data中的值动态的绑定到标签元素中-->
+<body>
+<div id="app">
+  <label v-for="fruit in originalFruits" :for="fruit">
+    <input type="checkbox" :value="fruit" :id="fruit" v-model="fruits">{{fruit}}
+  </label>
+  <h2>你选择的水果是: {{fruits}}</h2>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      fruits: [],
+      originalFruits: ['西瓜', '苹果', '橙子', '香蕉', '榴莲']
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

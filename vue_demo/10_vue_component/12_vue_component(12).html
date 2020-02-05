@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 父子组件通信  结合v-model案例-->
+<body>
+<div id="app">
+
+  <h3>我是父组件</h3>
+  <h2>{{number1}}</h2>
+  <h2>{{number2}}</h2>
+  <cpn @cnumber1change="number1change"
+       @cnumber2change="number2change"
+       :pnumber1="number1"
+       :pnumber2="number2"/>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>我是子组件</h2>
+    <h2>{{dnumber1}}</h2>
+    <input type="text" :value="dnumber1" @keyup="cnumber1change">
+
+    <h3>{{dnumber2}}</h3>
+    <input type="text" :value="dnumber2" @keyup="cnumber2change">
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: '#cpn',
+    props: {
+      pnumber1: Number,
+      pnumber2: Number,
+    },
+    data() {
+      return {
+        dnumber1: this.pnumber1,
+        dnumber2: this.pnumber2,
+
+      }
+    },
+    methods: {
+      cnumber1change(event) {
+        this.dnumber1 = event.target.value;
+        this.$emit('cnumber1change',this.dnumber1)
+      },
+      cnumber2change(event) {
+        this.dnumber2 = event.target.value;
+        this.$emit('cnumber2change',this.dnumber2)
+      }
+    }
+  };
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      number1: 1,
+      number2: 0
+    },
+    methods: {
+      number1change(value) {
+        console.log(value);
+        value = parseInt(value);
+        this.number1 = value
+      },
+      number2change(value) {
+        value = parseInt(value);
+        this.number2 = value
+      }
+    },
+    computed: {
+
+    },
+    components: {
+      cpn
+    }
+  });
+</script>
+</body>
+</html>

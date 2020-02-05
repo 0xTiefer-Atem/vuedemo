@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 编译的作用域-->
+<!--
+      每个Vue实例或者组件都有属于自己的作用域，都有属于自己作用域的变量,
+      不会跨作用域去使用变量
+-->
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+<!--  此时的isShow变量时vue实例的isShow 不是组件中定义的-->
+  <childcpn v-show="isShow"></childcpn>
+</div>
+<template id="child">
+  <div>
+    <h2>我是子组件</h2>
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+  let childcpn = {
+    template: '#child',
+    data() {
+      return {
+        isShow: false
+      }
+    }
+  };
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      isShow: true
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+      childcpn
+    }
+  });
+</script>
+</body>
+</html>

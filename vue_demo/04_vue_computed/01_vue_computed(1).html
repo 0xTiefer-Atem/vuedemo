@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <!-- 以前写法，直接拼接字符串-->
+  <h2>{{firstName + ' ' + lastName}}</h2>
+  <h2>{{firstName}} {{lastName}}</h2>
+
+<!--  通过函数，进行拼接-->
+  <h2>{{getFullName()}}</h2>
+
+  <!-- 计算属性(computed)基本使用-->
+  <h2>{{fullName}}</h2>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstName: '你好',
+      lastName: '你不好'
+    },
+    methods: {
+      getFullName(){
+        return this.firstName + ' ' + this.lastName
+      }
+    },
+    //计算属性()
+    computed: {
+      fullName: function () {
+        return this.firstName + ' ' + this.lastName
+      }
+    }
+  });
+</script>
+</body>
+</html>

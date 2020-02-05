@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<!--  用户登录切换小案例-->
+
+<!-- 会出现input框复用的问题，在标签里面加入不同的key属性值，vue就不会复用-->
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <span v-if="status">
+    <label for="user">用户账号</label>
+    <input id="user" type="text" placeholder='用户账号' key = 'userName'>
+  </span>
+  <span v-else>
+    <label for="register">用户邮箱</label>
+    <input id="register" type="email" placeholder="用户邮箱" key = 'email'>
+  </span>
+  <input type="button" value="状态切换" @click="change">
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '用户登录注册切换小案例',
+      status: true
+    },
+    methods: {
+      change() {
+        this.status = !this.status
+      }
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

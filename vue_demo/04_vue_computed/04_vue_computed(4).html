@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 计算属性和methods的对比-->
+<body>
+<div id="app">
+<!--  第一种方法，直接拼接: 语法过于繁琐-->
+  <h2>{{firstName}} {{lastName}}</h2>
+
+<!--  第二种方法，调用methods里的方法-->
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+
+<!--  第三种方法，通过computed-->
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstName: 'Kobe',
+      lastName: 'Bryant'
+    },
+    methods: {
+      getFullName: function () {
+        console.log('getFullName invoked');
+        return this.firstName + ' ' + this.lastName
+      }
+    },
+
+    //相对于methods，computed会对属性值进行缓存，因此当属性值没有发生变化时，方法只调用一次
+    //而methods会调用多次
+    computed: {
+      //这种写法是一个语法糖
+      fullName: function () {
+        console.log('fullName invoked');
+        return this.firstName + ' ' + this.lastName
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 子访问父组件 parent与root属性-->
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <child></child>
+</div>
+
+
+<template id="childcpn">
+  <div>
+    我是子组件
+    <input type="button" value="按钮" @click="btnClick">
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+
+  const child = {
+    template: '#childcpn',
+    data() {
+      return {};
+    },
+    methods: {
+      showMessage() {
+        console.log("我是子组件");
+      },
+      btnClick() {
+        //1. $parent访问父组件
+        console.log(this.$parent);
+        console.log(this.$parent.message);
+
+
+        //2. 访问根组件
+        console.log(this.$root.message);
+      }
+    }
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+    },
+    methods: {
+
+    },
+    computed: {
+
+    },
+    components: {
+      child
+    }
+  });
+</script>
+</body>
+</html>
